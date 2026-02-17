@@ -2,7 +2,8 @@ import z from "zod";
 
 
 export const jobApplicationValidator = z.object({
-  canditateId: z.string(),
+  applicationId: z.string(),
+  candidateId: z.string(),
   jobId: z.string(),
   repoUrl: z.url(),
   uuid: z.string()

@@ -26,7 +26,7 @@ function App() {
   const handleContinue = async (email: string) => {
     setEmail(email);
     createAlert("Email saved");
-    console.log("Here")
+    console.log("Here");
     // retry 3 times the request
     for (let i = 0; i < 3; i++) {
       try {
@@ -52,7 +52,8 @@ function App() {
     for (let i = 0; i < 3; i++) {
       try {
         await submitJobApplication({
-          canditateId: candidate.candidateId,
+          applicationId: candidate.applicationId,
+          candidateId: candidate.candidateId,
           jobId: jobApplicationId,
           repoUrl: githubURL,
           uuid: candidate.uuid
@@ -72,7 +73,7 @@ function App() {
 
   useEffect(() => {
     // track if the component is still mounted
-    let isMounted = true
+    let isMounted = true;
 
     /* 
      * tries to fetch the job positions while the component is mounted
@@ -84,7 +85,7 @@ function App() {
         setJobPositions(jobPositions.data);
       }).catch((reason) => {
         console.error(reason);
-        if (!isMounted) return
+        if (!isMounted) return;
         setTimeout(repeatOnFail, 5000);
       });
     };
@@ -92,7 +93,7 @@ function App() {
     repeatOnFail();
 
     // unmount function, runs on component unmount
-    return () => { isMounted = false }
+    return () => { isMounted = false; };
   }, []);
 
   return (
