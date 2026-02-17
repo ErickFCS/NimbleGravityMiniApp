@@ -1,0 +1,48 @@
+{
+  "dependencies": {
+    "@stylistic/eslint-plugin": "^5.8.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "axios": "^1.13.5",
+    "formik": "^2.4.9",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.1.18",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@stylistic/eslint-plugin-ts": "^4.4.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "daisyui": "^5.5.18",
+    "eslint": "^9.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "globals": "^17.3.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1"
+  },
+  "name": "nimble-gravity-mini-app",
+  "pnpm": {
+    "overrides": {
+      "vite": "$vite"
+    }
+  },
+  "private": true,
+  "scripts": {
+    "build": "pnpm run build:csr && pnpm run build:ssr",
+    "build:csr": "vite build --outDir ../dist/client",
+    "build:ssr": "vite build --ssr src/entry-server.tsx --outDir ../dist/server",
+    "dev": "vite dev",
+    "lint": "eslint -c ./eslint.config.js",
+    "lint:fix": "pnpm lint --fix"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}
