@@ -2,22 +2,21 @@ import { candidateValidator } from "../types/candidate.type";
 import { CustomError } from "../types/customError.type";
 import {
   JobApplication,
-  jobApplicationValidator
+  jobApplicationValidator,
 } from "../types/jobApplication.type";
 import { jobPositionValidator } from "../types/jobPosition.type";
 import axios from "axios";
 import z from "zod";
 
-
 const jobAPI = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 const buildRejection = (target: z.ZodSafeParseError<any>) => {
   return Promise.reject({
     details: z.treeifyError(target.error),
     timestamp: new Date().toISOString(),
-    type: "validation error"
+    type: "validation error",
   } as CustomError);
 };
 
@@ -28,8 +27,8 @@ export const getCandidateData = async (candidateEmail: string) => {
 
   const response = await jobAPI.get<unknown>("/api/candidate/get-by-email", {
     params: {
-      email: parsedCandidateEmail.data
-    }
+      email: parsedCandidateEmail.data,
+    },
   });
 
   const candidate = candidateValidator.safeParse(response.data);
@@ -53,9 +52,10 @@ export const submitJobApplication = async (jobApplication: JobApplication) => {
   if (!parsedJobApplication.success)
     return buildRejection(parsedJobApplication);
 
-  const response = await jobAPI.post("/api/candidate/apply-to-job", {
-    body: parsedJobApplication.data
-  });
+  const response = await jobAPI.post(
+    "/api/candidate/apply-to-job",
+    parsedJobApplication.data,
+  );
 
   const success = z.object({ ok: true }).safeParse(response.data);
   if (!success.success) return buildRejection(success);
