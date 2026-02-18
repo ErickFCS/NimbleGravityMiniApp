@@ -37,8 +37,8 @@
   "private": true,
   "scripts": {
     "build": "pnpm run build:csr && pnpm run build:ssr",
-    "build:csr": "vite build --outDir ../dist/client",
-    "build:ssr": "vite build --ssr src/entry-server.tsx --outDir ../dist/server",
+    "build:csr": "vite build --outDir ./dist/client",
+    "build:ssr": "vite build --ssr src/entry-server.tsx --outDir ./dist/server",
     "dev": "vite dev",
     "lint": "eslint -c ./eslint.config.js",
     "lint:fix": "pnpm lint --fix"
